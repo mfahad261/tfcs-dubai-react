@@ -1,0 +1,70 @@
+/* =========================================================
+   REACT VERSION ADDITIONS
+   ========================================================= */
+/* Before/after slider: when a real "before" photo exists, show it as-is
+   instead of faking it with a dirty filter. */
+.ba.real .before img{filter:none}
+.ba.real .before::after{display:none}
+
+/* =========================================================
+   SERVICES PAGE HERO: light background
+   ========================================================= */
+.sv-hero{background:linear-gradient(180deg,#FAFAF9 0%,#F3F3F1 100%);color:var(--ink)}
+.sv-hero .glow{background:radial-gradient(circle,rgba(200,200,196,.22),transparent 64%)}
+.sv-hero .glow.g2{background:radial-gradient(circle,rgba(99,182,70,.08),transparent 64%)}
+.sv-hero .hl{color:var(--green-d)}
+.sv-hero .lede{color:var(--muted)}
+.sv-hero .crumb{color:var(--muted-2)}
+.sv-hero .crumb a:hover{color:var(--ink)}
+.sv-hero .jump a{background:#fff;border-color:#E6E6E3;box-shadow:0 10px 24px -20px rgba(13,53,83,.35)}
+.sv-hero .jump a small{color:var(--muted-2)}
+.sv-hero .jump a .i{color:var(--green-d)}
+.sv-hero .jump a:hover{background:#fff;border-color:var(--brand);box-shadow:0 18px 34px -22px rgba(13,53,83,.45)}
+@media (min-width:1181px){.sv-hero .jump{grid-template-columns:repeat(5,minmax(0,1fr))}}
+
+/* Dark header text over the light hero */
+body:not(.menu-open).on-svcs .nav:not(.solid):not(.mega-on){color:var(--ink)}
+body:not(.menu-open).on-svcs .nav:not(.solid):not(.mega-on) .logo{--lb:var(--brand)}
+
+/* =========================================================
+   SERVICE DETAIL HERO: same light grey as the Services page
+   ========================================================= */
+.sd-hero{background:linear-gradient(180deg,#FAFAF9 0%,#F3F3F1 100%);color:var(--ink)}
+.sd-hero .glow{background:radial-gradient(circle,rgba(200,200,196,.22),transparent 64%)}
+.sd-hero .big{-webkit-text-stroke:1.5px rgba(13,53,83,.07)}
+.sd-hero .crumb{color:var(--muted-2)}
+.sd-hero .crumb a:hover{color:var(--ink)}
+.sd-hero h1 em{color:var(--green-d)}
+.sd-hero .lede{color:var(--muted)}
+.sd-hero .sd-badge{background:#fff;border-color:#E6E6E3}
+.sd-hero .btn-ghost{border-color:rgba(13,53,83,.3);color:var(--ink)}
+.sd-hero .btn-ghost:hover{background:rgba(13,53,83,.05);border-color:var(--ink)}
+.sd-hero .sd-facts{border-top-color:#E2E2DE}
+.sd-hero .sd-facts div+div{border-left-color:#E2E2DE}
+.sd-hero .sd-facts span{color:var(--muted-2)}
+.sd-hero .sd-media .ph{background:var(--mist-2);box-shadow:0 0 0 10px rgba(13,53,83,.035),0 0 0 22px rgba(13,53,83,.02)}
+.sd-hero .sd-float{box-shadow:0 26px 50px -24px rgba(13,53,83,.4)}
+@media (max-width:860px){
+  .sd-hero .sd-facts div,.sd-hero .sd-facts div+div{border-bottom-color:#E2E2DE}
+}
+
+/* Dark header text over the light service hero */
+body:not(.menu-open).on-svc .nav:not(.solid):not(.mega-on){color:var(--ink)}
+body:not(.menu-open).on-svc .nav:not(.solid):not(.mega-on) .logo{--lb:var(--brand)}
+
+/* =========================================================
+   ABOUT PAGE: team member feature
+   ========================================================= */
+.lead-card{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px);align-items:center}
+.lead-card .ph{aspect-ratio:4/5;border-radius:20px}
+.lead-card .label{margin-bottom:18px}
+.lead-card .role{margin-top:10px;font-size:clamp(17px,1.4vw,20px);font-weight:600;color:var(--green-d)}
+.lead-card .lede{margin-top:16px;max-width:38em}
+.lead-card .role+.lede{margin-top:20px;font-weight:500;color:var(--ink)}
+.lead-card .focus{list-style:none;margin:28px 0 0;padding:22px 0 0;border-top:1px solid var(--line);display:grid;gap:12px}
+.lead-card .focus li{display:flex;align-items:center;gap:12px;font-size:15px;font-weight:500}
+.lead-card .focus .i{flex:none;width:18px;height:18px;color:var(--green-d)}
+@media (max-width:860px){
+  .lead-card{grid-template-columns:1fr}
+  .lead-card .ph{max-width:420px}
+}

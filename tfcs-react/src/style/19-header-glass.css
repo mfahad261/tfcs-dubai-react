@@ -1,0 +1,25 @@
+/* =========================================================
+   v11: PREMIUM GLASS HEADER
+   ========================================================= */
+.nav.solid{background:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.nav.solid .nav-in{height:80px}
+.nav.solid .logo svg{height:38px}
+.nav-glass{--gi:max(12px,calc((100% - min(100%,var(--max))) / 2 + var(--gut) - 24px));--gx:50%;position:absolute;z-index:-1;top:10px;height:60px;left:var(--gi);right:var(--gi);border-radius:20px;pointer-events:none;opacity:0;transform:translateY(-14px) scale(1.02);transition:opacity .45s var(--ease),transform .6s var(--ease);
+  background:linear-gradient(135deg,rgba(255,255,255,.86) 0%,rgba(255,255,255,.66) 55%,rgba(240,248,252,.74) 100%);
+  -webkit-backdrop-filter:blur(22px) saturate(1.9) brightness(1.04);backdrop-filter:blur(22px) saturate(1.9) brightness(1.04);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.3),0 1px 2px rgba(13,53,83,.06),0 10px 24px -12px rgba(13,53,83,.22),0 30px 60px -30px rgba(13,53,83,.35)}
+.nav-glass::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(115deg,rgba(255,255,255,1) 0%,rgba(255,255,255,.15) 35%,rgba(35,140,204,.35) 70%,rgba(99,182,70,.45) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.nav-glass::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(240px 90px at var(--gx) 0%,rgba(255,255,255,.75),transparent 70%);opacity:.55;transition:opacity .4s}
+.nav:hover .nav-glass::after{opacity:1}
+.nav.solid .nav-glass{opacity:1;transform:none}
+.nav.mega-on .nav-glass,.menu-open .nav-glass{opacity:0;transform:translateY(-14px) scale(1.02)}
+.nav.solid:not(.mega-on) .nav-links>a::after,.nav.solid:not(.mega-on) .dd>a::after{bottom:2px}
+.nav.solid .btn-sm{border-radius:12px;box-shadow:0 8px 18px -10px rgba(63,138,42,.8)}
+.nav.solid .burger{border-radius:12px;border-color:rgba(13,53,83,.18);background:rgba(255,255,255,.5)}
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){.nav-glass{background:rgba(255,255,255,.96)}}
+@media (max-width:860px){
+  .nav.solid .nav-in{height:72px}
+  .nav-glass{top:8px;height:56px;--gi:10px;border-radius:18px}
+  .nav.solid .logo svg{height:34px}
+  .nav.solid .burger{width:42px;height:42px}
+}

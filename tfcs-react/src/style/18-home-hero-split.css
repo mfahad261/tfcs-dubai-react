@@ -1,0 +1,19 @@
+/* =========================================================
+   v10: v8 split hero with the TFCS before/after image
+   ========================================================= */
+.sh-img img{object-position:58% 50%}
+.sh-img::after{background:linear-gradient(90deg,rgba(7,28,46,.12),transparent 25%)}
+.sh-img .cx-chip{top:22px;z-index:2}
+.sh-img .cx-chip.after{right:26px;left:auto}
+.sh-img .cx-chip.before{left:26px;right:auto}
+.sh-thumb,.sh-stat{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;transform:perspective(700px) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .3s,opacity .9s var(--ease),translate 1s var(--ease)}
+.sh .up.sh-thumb,.sh .up.sh-stat{transform:perspective(700px) rotateX(var(--rx)) rotateY(var(--ry));opacity:0;translate:0 26px;transition-delay:0s,0s,0s,calc(var(--d,0) * 90ms + .5s),calc(var(--d,0) * 90ms + .5s)}
+.ready .sh .up.sh-thumb,.ready .sh .up.sh-stat{opacity:1;translate:0 0}
+.sh-thumb:hover,.sh-stat:hover{box-shadow:0 26px 44px -22px rgba(13,53,83,.55)}
+.sh-thumb .glare,.sh-stat .glare{position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:inherit;background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,.4),transparent 50%);opacity:0;mix-blend-mode:soft-light;transition:opacity .4s}
+.sh-thumb:hover .glare,.sh-stat:hover .glare{opacity:1}
+.sh-stat .glare{mix-blend-mode:normal;background:radial-gradient(circle at var(--mx) var(--my),rgba(35,140,204,.10),transparent 60%)}
+@media (max-width:860px){.sh-img img{object-position:76% 50%}}
+@media (max-width:600px){.sh-img .cx-chip{top:12px;font-size:10.5px;padding:6px 11px}.sh-img .cx-chip.after{right:12px;left:auto}.sh-img .cx-chip.before{left:12px;right:auto}}
+@media (prefers-reduced-motion:reduce){.sh .up.sh-thumb,.sh .up.sh-stat{opacity:1;translate:none}}
+@media (max-width:600px){.sh-glass small{display:none}.sh-glass b{font-size:13px}}

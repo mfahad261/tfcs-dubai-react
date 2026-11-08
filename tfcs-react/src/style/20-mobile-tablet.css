@@ -1,0 +1,91 @@
+/* =========================================================
+   v12: MOBILE + TABLET OPTIMISATION
+   ========================================================= */
+.swipe-hint{display:none}
+
+/* quote bar: service full row, property + when side by side, full-width button */
+@media (max-width:1120px){
+  .bar{grid-template-columns:1fr 1fr;grid-template-areas:"svc svc" "type when" "go go"}
+  .bar .cell{border-right:0;border-bottom:1px solid var(--line)}
+  .bar .cell:nth-child(1){grid-area:type;border-right:1px solid var(--line)}
+  .bar .cell:nth-child(2){grid-area:svc}
+  .bar .cell:nth-child(3){grid-area:when}
+  .bar .go{grid-area:go;padding:12px}
+  .bar .go .btn{width:100%}
+  .bar select{min-height:40px}
+}
+
+@media (max-width:860px){
+  /* hero: tag + headline, then the photo, then copy, buttons and cards */
+  .sh .sh-in,.sh .sh-copy{display:contents}
+  .sh-copy>*{margin-inline:var(--gut)}
+  .sh-tag{order:1;align-self:flex-start;margin-top:calc(var(--nav-h) + 26px)}
+  .sh-h{order:2}
+  .sh-media{order:3;margin:26px 0 0 var(--gut);height:min(66vw,430px)}
+  .sh-p{order:4;margin-top:26px}
+  .sh-cta{order:5}
+  .sh-cards{order:6;margin-top:30px;margin-bottom:38px}
+  .sh-cta .btn{flex:1 1 auto}
+
+  .intro .ph{aspect-ratio:16/11}
+  .burger{border-radius:12px;border-color:color-mix(in srgb,currentColor 35%,transparent)}
+  .fab{width:52px;height:52px;right:14px}
+  .fab-wa{bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+  .show-top .fab-wa{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+  #toTop{bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+  .sd-facts span{font-size:12px}
+  .tscroll{-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
+}
+
+@media (max-width:600px){
+  .bar .cell{padding:14px 16px}
+  .bar select{font-size:16px}
+  .sec{padding-block:clamp(64px,16vw,88px)}
+  .head{margin-bottom:36px}
+
+  /* home service cards: swipe carousel */
+  .svc-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gut) * -1);padding:6px var(--gut) 20px;scroll-padding-inline:var(--gut);scrollbar-width:none;perspective:none}
+  .svc-grid::-webkit-scrollbar{display:none}
+  .svc-grid .svc-card{flex:0 0 84%;scroll-snap-align:start}
+  .svc-card .ph{aspect-ratio:4/3}
+  .swipe-hint{display:flex;align-items:center;gap:12px;margin-top:6px;font-size:13px;font-weight:500;color:var(--muted)}
+  .swipe-hint i{flex:1;height:2px;border-radius:2px;background:var(--line);position:relative;overflow:hidden}
+  .swipe-hint i b{position:absolute;inset:0 auto 0 0;width:var(--sp,17%);background:var(--deep);border-radius:2px;transition:width .2s}
+
+  /* before / after: job chips that scroll sideways */
+  .ba-sec .wrap>*{min-width:0}
+  .ba-tabs{display:flex;overflow-x:auto;gap:8px;border-top:0;margin:26px calc(var(--gut) * -1) 0;padding:0 var(--gut) 6px;scrollbar-width:none}
+  .ba-tabs::-webkit-scrollbar{display:none}
+  .ba-tabs button{flex:none;width:auto;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:10px 16px;font-size:14px;color:rgba(255,255,255,.75)}
+  .ba-tabs button span{display:none}
+  .ba-tabs button[aria-selected=true]{background:var(--green);border-color:var(--green);color:#06210F;padding-left:16px;box-shadow:none}
+  .ba{aspect-ratio:4/3.4}
+
+  /* service detail */
+  .sd-media{max-width:340px}
+  .sd-media .ph{aspect-ratio:1/1.05}
+
+  /* AMC */
+  .plan{padding:30px 24px}
+  .plan .amt b{font-size:30px!important;line-height:1.1}
+  .ptoggle button{padding:12px 14px}
+
+  /* contact */
+  .cinfo a{display:inline-block;padding:6px 0}
+  .opt label{padding:13px 16px}
+  .prog div{font-size:12px}
+
+  /* footer: services and areas side by side */
+  .fgrid{grid-template-columns:1fr 1fr;gap:36px 20px}
+  .fgrid>div:first-child,.fgrid>div:last-child{grid-column:1/-1}
+  .footer ul{font-size:14px;gap:12px}
+  .footer ul a{display:inline-block;padding:3px 0}
+  .news input{font-size:16px}
+  .fword{margin-top:44px}
+}
+@media (max-width:380px){
+  .sh-thumb{width:78px}
+  .sh-stat{padding:12px}
+  .sh-stat span{font-size:13px}
+  .sh-call{font-size:14px}
+}

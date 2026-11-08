@@ -1,0 +1,23 @@
+/* =========================================================
+   INTRO CURTAIN + PAGE CURTAIN
+   ========================================================= */
+#intro{position:fixed;inset:0;z-index:300;pointer-events:none}
+#intro .p{position:absolute;left:0;right:0;height:50.2%;background:var(--deep);transition:transform 1.15s var(--curtain)}
+#intro .p.t{top:0}#intro .p.b{bottom:0}
+#intro .mark{position:absolute;inset:0;display:grid;place-items:center;z-index:2;transition:opacity .35s}
+#intro .word{display:block;overflow:hidden;--lb:#fff;--lg:var(--green)}
+#intro .word svg{display:block;width:clamp(240px,42vw,520px);height:auto;aspect-ratio:1050/345;transform:translateY(105%);animation:up .9s var(--ease) .1s forwards}
+#intro .rule{width:0;height:1px;background:var(--green);margin:18px auto 0;animation:rule 1s .35s var(--ease) forwards}
+#intro.open .p.t{transform:translateY(-100%)}
+#intro.open .p.b{transform:translateY(100%)}
+#intro.open .mark{opacity:0}
+@keyframes up{to{transform:none}}
+@keyframes rule{to{width:140px}}
+
+#curtain{position:fixed;inset:0;z-index:250;pointer-events:none;background:var(--deep);transform:translateY(100%);display:grid;place-items:center;visibility:hidden}
+#curtain.in,#curtain.out{visibility:visible}
+#curtain::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--green)}
+#curtain .t{font-family:var(--serif);font-size:clamp(34px,5vw,64px);color:#fff;opacity:0;transform:translateY(20px);transition:opacity .3s,transform .5s var(--ease)}
+#curtain.in{transform:translateY(0);transition:transform .65s var(--curtain);pointer-events:auto}
+#curtain.in .t{opacity:1;transform:none;transition-delay:.25s}
+#curtain.out{transform:translateY(-100%);transition:transform .75s var(--curtain)}
