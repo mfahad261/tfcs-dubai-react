@@ -256,7 +256,7 @@ export default function QuoteForm() {
                 id="femail"
                 type="email"
                 autoComplete="email"
-                placeholder="For your booking confirmation"
+                placeholder="For your confirmation email"
                 value={form.email}
                 onChange={set('email')}
               />

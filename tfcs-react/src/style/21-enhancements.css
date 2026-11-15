@@ -68,3 +68,7 @@ body:not(.menu-open).on-svc .nav:not(.solid):not(.mega-on) .logo{--lb:var(--bran
   .lead-card{grid-template-columns:1fr}
   .lead-card .ph{max-width:420px}
 }
+
+/* Long email address: wrap inside its card and the footer instead of overflowing on phones */
+.cinfo .r>div{min-width:0}
+.cinfo a[href^="mailto:"],.footer a[href^="mailto:"]{overflow-wrap:break-word}

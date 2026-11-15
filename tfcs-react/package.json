@@ -3,16 +3,30 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "TFCS Technical & Cleaning Services, Dubai. Front-end website built with React and Vite.",
+  "description": "TFCS Technical & Cleaning Services, Dubai. Website (React + Vite) and email server (Express).",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "vite",
+    "dev:server": "node --watch server/server.js",
     "build": "vite build && vite build --ssr src/entry-server.jsx --outDir .ssr && node scripts/prerender.mjs",
+    "start": "cross-env NODE_ENV=production node server/server.js",
     "preview": "vite preview"
   },
   "dependencies": {
+    "compression": "^1.8.2",
+    "cors": "^2.8.6",
+    "cross-env": "^10.1.0",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.4",
+    "helmet": "^8.3.0",
+    "nodemailer": "^10.5.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^7.9.0"
+    "react-router-dom": "^7.9.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.0",

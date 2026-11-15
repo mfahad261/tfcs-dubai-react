@@ -7,6 +7,7 @@ import { useToast } from '../context/ToastContext';
 import { isEmail } from '../lib/validation';
 import { subscribeNewsletter } from '../lib/api';
 import Logo from '../components/Logo';
+import EmailText from '../components/EmailText';
 
 export default function Footer() {
   const toast = useToast();
@@ -87,7 +88,9 @@ export default function Footer() {
                 <a href={`tel:${site.phone.tel}`}>{site.phone.international}</a>
               </li>
               <li>
-                <a href={`mailto:${site.email}`}>{site.email}</a>
+                <a href={`mailto:${site.email}`}>
+                  <EmailText />
+                </a>
               </li>
             </ul>
             <form className="news" noValidate onSubmit={subscribe}>

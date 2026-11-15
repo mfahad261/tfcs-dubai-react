@@ -3,8 +3,8 @@
  * Change a value here and it updates everywhere (nav, footer, contact page, schema).
  */
 export const site = {
-  // Live website address, no trailing slash. Update this when a custom domain is connected.
-  url: 'https://tfcs-dubai.netlify.app',
+  // Live website address, no trailing slash. Used for canonical links, the sitemap and structured data.
+  url: 'https://tfcstechnicalandcleaningservices.com',
 
   brand: 'TFCS',
   name: 'TFCS Technical & Cleaning Services',
@@ -19,7 +19,9 @@ export const site = {
   // WhatsApp number in international format, digits only (used for wa.me links)
   whatsapp: '971586324989',
 
-  email: 'info@finestcleandubai.com',
+  email: 'info@tfcstechnicalandcleaningservices.com',
+  // Where the long email may wrap on small screens. Must join back into `email` exactly.
+  emailBreaks: ['info@', 'tfcs', 'technical', 'and', 'cleaning', 'services.com'],
 
   address: {
     full: 'Empire Heights Tower B - Dubai Fountain St - Business Bay - Dubai - United Arab Emirates',

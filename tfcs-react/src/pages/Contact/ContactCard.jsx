@@ -1,6 +1,7 @@
 import { site } from '../../data/site';
 import Icon from '../../components/Icon';
 import WhatsAppLink from '../../components/WhatsAppLink';
+import EmailText from '../../components/EmailText';
 
 export default function ContactCard() {
   return (
@@ -29,7 +30,9 @@ export default function ContactCard() {
           <Icon name="i-mail" />
           <div>
             <a href={`mailto:${site.email}`}>
-              <b>{site.email}</b>
+              <b>
+                <EmailText />
+              </b>
             </a>
             <small>For contracts and documents</small>
           </div>

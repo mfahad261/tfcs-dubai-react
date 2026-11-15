@@ -1,25 +1,31 @@
-# TFCS Dubai website (React + Vite)
+# TFCS Dubai website
 
-Front-end for **TFCS Technical & Cleaning Services**, Dubai.
-Built with React 19, React Router 7 and Vite 7. No UI library: the design is plain CSS.
+Website and email server for **TFCS Technical & Cleaning Services**, Dubai.
+Website: React 19, React Router 7 and Vite 7, plain CSS. Server: Express 5 and Nodemailer.
+One `package.json` holds the dependencies for both.
 
 ## Run it
 
 ```bash
 npm install
-npm run dev       # http://localhost:5173
-npm run build     # production build in /dist: one HTML file per page, sitemap.xml, robots.txt
-npm run preview   # test the production build locally
+cp server/.env.example server/.env   # then put the mailbox password in SMTP_PASS
+npm run build       # website in /dist: one HTML file per page, sitemap.xml, robots.txt
+npm start           # production server: website + email API on http://localhost:5000
 ```
 
-Needs Node.js 18 or newer.
+While editing: `npm run dev` (website with live reload, http://localhost:5173) and,
+to test the forms, `npm run dev:server` in a second terminal with `VITE_API_URL=/api` in `.env`.
+
+Needs Node.js 20 or newer.
 
 ## Folder structure
 
 Organised by page: to change something on a page, open that page's folder.
 
 ```
-public/                   favicon, robots.txt, _redirects (old URL redirects), og-image.jpg (social sharing)
+public/                   favicons, og-image.jpg (social sharing)
+scripts/prerender.mjs     builds one HTML file per page after the Vite build
+server/                   Express server: serves /dist and the email API (see below)
 src/
   pages/                  one folder per page, holding the page and all its sections
     Home/                 Home.jsx + Hero, QuoteBar, BeforeAfter, Testimonials, ...
@@ -70,29 +76,49 @@ Jobs without one show the after photo with a "dirty" filter.
 `/`, `/services`, `/services/:slug`, `/amc`, `/areas`, `/about`, `/contact`.
 Old links from the single-file site (`/#/services/...`) redirect automatically.
 
-## Backend hook (email)
+## Email server
 
-Bookings work today without a backend: the quote form opens WhatsApp with all the details.
+`server/server.js` serves the built website and the email API on one address.
 
-When the backend is ready:
+| Route | What it does |
+| --- | --- |
+| `POST /api/booking` | Quote form. Emails the request to the mailbox (Reply-To: the customer), then a confirmation to the customer if they gave an email. |
+| `POST /api/newsletter` | Footer form. Emails the new subscriber to the mailbox. |
+| `GET /api/health` | `{"ok":true,"email":"configured"}` when the mailbox password is set. |
+| any page | The matching built page from `/dist`, or the 404 page. |
 
-1. Copy `.env.example` to `.env` and set `VITE_API_URL` (for example `http://localhost:5000/api`).
-2. The form will also `POST {VITE_API_URL}/booking` with:
-   ```json
-   { "service", "propertyType", "date", "slot", "name", "phone", "email", "area", "notes", "submittedAt" }
-   ```
-   The newsletter form posts `{ "email" }` to `{VITE_API_URL}/newsletter`.
-3. All of this lives in `src/lib/api.js`. The form has a hidden honeypot field (`website`) to stop bots.
+```
+server/
+  server.js        starts the server, security headers, shutdown
+  config/          settings from server/.env, mail connection
+  routes/          API routes and website pages
+  controllers/     quote and newsletter handlers
+  services/        sending email
+  templates/       email layout (HTML and plain text)
+  validators/      rules for every form field
+  middleware/      rate limits, allowed websites, redirects, errors, logging
+  errors/          error type shown to visitors
+```
 
-Never put secret keys (email API keys, SMTP passwords) in this front-end or in `VITE_` variables:
-anything starting with `VITE_` is visible in the browser. Keep them on the backend.
+- Mail goes through `smtp.hostinger.com` port 465 (SSL) as `info@tfcstechnicalandcleaningservices.com`.
+  All settings are in `server/.env` (see `server/.env.example`). That file is never committed.
+- Protection: field validation, a hidden spam-trap field, 5 quote requests per visitor every 15 minutes,
+  requests from other websites blocked, 20 KB request limit.
+- If the password is missing or wrong, the website keeps working and the forms still open WhatsApp.
+- The server log shows `[mail] connected ...` at start and `[mail] sent ...` for every email.
 
-## Deploying to Netlify
+Never put secrets in the website code or in `VITE_` variables: anything starting with `VITE_` is visible in the browser.
 
-`netlify.toml` is included: build command `npm run build`, and publish folder `dist`.
-Every page is built as its own HTML file, so deep links work on refresh and unknown URLs return a real 404.
-Page titles and descriptions live in `src/data/seo.js`. Update `url` in `src/data/site.js` if the domain changes.
-Add `VITE_API_URL` under Site configuration → Environment variables when you have a backend.
+## Production
+
+```bash
+npm install
+npm run build
+npm start
+```
+
+Set the values from `server/.env.example` as environment variables or in `server/.env`, and keep SSL on for the domain.
+Page titles and descriptions live in `src/data/seo.js`. The domain is set by `url` in `src/data/site.js`.
 
 ---
 Website by [Qodexaa](https://qodexaa.com/).
